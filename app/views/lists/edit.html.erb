@@ -1,0 +1,15 @@
+<h1>Edit Todo Item</h1>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">You Are Editing "<%= @list.description %>"</h5>
+    <%= render 'form', list: @list %>
+  </div>
+</div>
+
+
+
+
+
+
+<%= link_to 'Back', lists_path%>

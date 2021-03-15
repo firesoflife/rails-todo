@@ -1,0 +1,59 @@
+<br><br>
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lists.each do |list| %>
+      <% if list.completed%>
+      <tr class="table-secondary">
+        <td class="strike"> <%= link_to list.description, edit_list_path(list) %><% list.description %></td>
+        <td>
+           <%= form_with(model: list) do |form| %>
+              <%= form.text_field :description, type: 'hidden' %>
+              <%= form.check_box :completed, class:'form-check-input', :checked => false, :style => 'visibility: hidden' %>
+              <%= form.submit "Uncheck", class: 'btn btn-outline-success btn-sm' %>
+            <% end %>
+        </td>
+        <td>
+          <%= link_to 'Details', list, class: "btn btn-primary" %><td>
+          <% link_to 'Edit', edit_list_path(list) %>
+          <%= link_to 'Remove', list, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td> 
+      </tr>
+      <% else %>
+      
+        <tr>
+          <td> <%= link_to list.description, edit_list_path(list) %><% list.description %></td>
+          <td class="d-flex">
+            <%= form_with(model: list) do |form| %>
+              <%= form.text_field :description, type: 'hidden' %>
+              <%= form.check_box :completed, class:'form-check-input', :checked => true, :style => 'visibility: hidden' %>
+              <%= form.submit "Check", class: 'btn btn-outline-success' %>
+            <% end %>
+          
+          
+          </td>
+          <td>
+            <%= link_to 'Details', list, class: "btn btn-primary" %><td>
+            <% link_to 'Edit', edit_list_path(list) %>
+            <%= link_to 'Remove', list, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div class="d-grid gap-2">
+  <%= link_to 'Add Item', new_list_path, class: 'btn btn-secondary' %>
+</div>
+<br>
+<%= link_to "Delete Completed Tasks", home_trash_em_path, data: { confirm: 'Are you sure?' }  %> |
+<%= link_to 'Delete All Items', home_trash_em_all_path, data: {confirm: 'Are You Sure?'} %>

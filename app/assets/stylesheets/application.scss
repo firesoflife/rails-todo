@@ -10,6 +10,29 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
+
+
  */
+a {
+  text-decoration: none;
+  color: #333;
+
+  &:hover {
+    color: lightcoral;
+  }
+}
+
+td a {
+  text-decoration: none;
+  color: lightcoral;
+  padding: 0 20px;
+}
+
+.strike {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.fade {
+  opacity: 0.7;
+}

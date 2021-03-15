@@ -1,0 +1,20 @@
+<%= form_with(model: list) do |form| %>
+  <% if list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(list.errors.count, "error") %> prohibited this list from being saved:</h2>
+
+      <ul>
+        <% list.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group d-flex mx-2">
+  Add ToDo
+    <% form.label :description %>
+    <%= form.text_field :description, class: "form-control m-2 "%>
+    <%= form.submit "Add ToDo Item", class: 'btn btn-outline-success m-2 my-sm-0 ' %>
+  </div>
+<% end %>
